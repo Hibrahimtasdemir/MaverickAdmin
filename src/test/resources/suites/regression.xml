@@ -8,22 +8,15 @@
     </listeners>
     -->
 
-    <test name="Homepage">
+    <test name="FunctionPage">
         <classes>
-            <class name="amazon.tests.US001_Homepage" />
+            <class name="CommonMethods.tests.CreateNewFunction" />
         </classes>
     </test>
 
-    <test name="Product Search">
+    <test name="Search">
         <classes>
-            <class name="amazon.tests.US002_ProductSearchTest" />
-            <class name="amazon.tests.US003_ProductSearchFilterTest"></class>
-        </classes>
-    </test>
-
-    <test name="Pagination Test">
-        <classes>
-            <class name="amazon.tests.US004_PaginationTest" />
+            <class name="CommonMethods.tests.CreateNewFunction" />
         </classes>
     </test>
 

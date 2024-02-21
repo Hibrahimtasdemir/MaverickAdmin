@@ -4,27 +4,27 @@
     <!-- parallel="tests" thread-count="3" -->
 
     <listeners>
-        <listener class-name="amazon.tests.ExtentReportListener"/>
-        <listener class-name="amazon.tests.AllureReportListener"></listener>
+        <listener class-name="CommonMethods.tests.ExtentReportListener"/>
+        <listener class-name="CommonMethods.tests.AllureReportListener"></listener>
     </listeners>
 
     <test name="JSON Tests">
         <classes>
-            <class name="amazon.tests.JsonDataTest"/>
+            <class name="CommonMethods.tests.JsonDataTest"/>
         </classes>
     </test>
 
     <test name="CSV Tests ">
         <classes>
-            <class name="amazon.tests.ExcelDataCsvTest"></class>
+            <class name="CommonMethods.tests.ExcelDataCsvTest"></class>
         </classes>
     </test>
 
     <test name="SearchPage tests 2">
         <classes>
-            <class name="amazon.tests.US002_ProductSearchTest2"></class>
-            <class name="amazon.tests.US003_ProductSearchFilterTest2"></class>
-            <class name="amazon.tests.US004_PaginationTest2"></class>
+            <class name="CommonMethods.tests.US002_ProductSearchTest2"></class>
+            <class name="CommonMethods.tests.US003_ProductSearchFilterTest2"></class>
+            <class name="CommonMethods.tests.US004_PaginationTest2"></class>
         </classes>
     </test>
 

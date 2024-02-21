@@ -1,4 +1,4 @@
-21:16:54.899 [TestNG-tests-3] INFO  amazon.tests.ExtentReportListener - (ExtentReportListener.java:23) - Testname : TC004_RedirectProductPage
-21:16:54.917 [TestNG-tests-3] INFO  amazon.tests.AllureReportListener - (AllureReportListener.java:53) - Testname : TC004_RedirectProductPage
-22:17:57.075 [TestNG-tests-1] INFO  amazon.tests.ExtentReportListener - (ExtentReportListener.java:23) - Testname : TC001_SearchByClickOnSearchIcon
-22:17:57.080 [TestNG-tests-1] INFO  amazon.tests.AllureReportListener - (AllureReportListener.java:53) - Testname : TC001_SearchByClickOnSearchIcon
+21:16:54.899 [TestNG-tests-3] INFO  CommonMethods.tests.ExtentReportListener - (ExtentReportListener.java:23) - Testname : TC004_RedirectProductPage
+21:16:54.917 [TestNG-tests-3] INFO  CommonMethods.tests.AllureReportListener - (AllureReportListener.java:53) - Testname : TC004_RedirectProductPage
+22:17:57.075 [TestNG-tests-1] INFO  CommonMethods.tests.ExtentReportListener - (ExtentReportListener.java:23) - Testname : TC001_SearchByClickOnSearchIcon
+22:17:57.080 [TestNG-tests-1] INFO  CommonMethods.tests.AllureReportListener - (AllureReportListener.java:53) - Testname : TC001_SearchByClickOnSearchIcon

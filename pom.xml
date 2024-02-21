@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>amazon</groupId>
-    <artifactId>com.amazon.testng</artifactId>
+    <artifactId>MaverickAdmin</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>com.amazon.testng</name>
+    <name>com.CommonMethods.testng</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
@@ -82,7 +82,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.8.3</version>
+            <version>4.16.1</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
