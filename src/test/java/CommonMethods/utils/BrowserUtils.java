@@ -1,18 +1,20 @@
 package CommonMethods.utils;
 
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.*;
+
+import static CommonMethods.pagefactory.Annotations.driver;
 
 
 public class BrowserUtils {
@@ -382,7 +384,7 @@ public class BrowserUtils {
         }
     }
 
-    //Flashing teh background color
+    //Flashing the background color
     public static void flash(WebElement element) {
         String bgColor = element.getCssValue("backgroundcolor");
         for (int i = 0; i < 10; i++) {
@@ -426,4 +428,20 @@ public class BrowserUtils {
     //****** Javascript methods *******************************
 
 
+    public static void takeScreenshot(String screenshotName){
+
+        TakesScreenshot ts = (TakesScreenshot) driver;
+
+        File src = ts.getScreenshotAs(OutputType.FILE);
+
+        String destination = "C:\\Users\\a365t_regz\\Pictures\\Camera Roll" + screenshotName + ".png";
+
+        try {
+            FileUtils.copyFile(src, new File(destination));
+            System.out.println("Screenshot taken and saved at: " + destination);
+        } catch (IOException e) {
+            System.out.println("Exception while taking screenshot: " + e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
 }

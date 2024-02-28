@@ -30,13 +30,3 @@
 
 </suite>
 
-        <!--
-
-         <test name="LoginMain" parallel="classes" >
-                <classes>
-                    <class name="testngpractise.WebLogin" />
-                    <class name="testngpractise.MainPage" />
-                </classes>
-            </test>
-
-        -->

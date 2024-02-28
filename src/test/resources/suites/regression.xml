@@ -2,21 +2,22 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="parallel test suite" parallel="tests" thread-count="15">
 
-    <!--
+
     <listeners>
-        <listener class-name="testngpractise.Listener" />
+        <listener class-name="CommonMethods.listener.AllureReportListener" />
+        <listener class-name="CommonMethods.listener.ExtentReportListener" />
     </listeners>
-    -->
+
 
     <test name="FunctionPage">
         <classes>
-            <class name="CommonMethods.tests.CreateNewFunction" />
+            <class name="CommonMethods.tests.Funktionen.US001_Show_Functions" />
         </classes>
     </test>
 
-    <test name="Search">
+    <test name="BenutzerPage">
         <classes>
-            <class name="CommonMethods.tests.CreateNewFunction" />
+            <class name="CommonMethods.tests.Benutzer.US001_User_Fullscreen" />
         </classes>
     </test>
 

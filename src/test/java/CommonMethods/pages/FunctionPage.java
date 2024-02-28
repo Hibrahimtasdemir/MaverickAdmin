@@ -4,6 +4,9 @@ import CommonMethods.pagefactory.Base;
 import CommonMethods.utils.BrowserUtils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
+
 import static CommonMethods.pagefactory.Annotations.driver;
 
 public class FunctionPage extends Base {
@@ -43,6 +46,74 @@ public class FunctionPage extends Base {
 
     @FindBy(css = "div.ms-DetailsList.ms-DetailsList--Compact")
     private WebElement compactTable;
+
+    @FindBy(css = "div.ms-Modal-scrollableContent")
+    private WebElement functionPanel;
+
+    @FindBy(css = "span.ms-Dialog-action>button")
+    private WebElement btnCreateFunction;
+
+    @FindBy(css = "div.ms-ComboBox-container:nth-child(1)>div")
+    private WebElement cbbOrganisation;
+
+    @FindBy(css = "div.ms-ComboBox-container:nth-child(2) input")
+    private WebElement cbbRole;
+
+    @FindBy(xpath = "//span[text()='103']")
+    private WebElement cbbOrg103;
+
+    @FindBy(xpath = "//span[text()='Lesen']")
+    private WebElement cbbRoleLesen;
+
+    @FindBy(xpath = "//button[@title='Hinzufügen']")
+    private WebElement btnHinzufugen;
+
+    public WebElement getBtnHinzufugen() {
+        BrowserUtils.waitFor(2);
+        return btnHinzufugen;
+    }
+
+    public WebElement getCbbOrg103() {
+        BrowserUtils.waitForVisibility(cbbOrg103,5);
+        return cbbOrg103;
+    }
+
+    public WebElement getCbbRoleLesen() {
+        BrowserUtils.waitForVisibility(cbbRoleLesen,5);
+        return cbbRoleLesen;
+    }
+
+    public WebElement getBtnCreateFunction() {
+        return btnCreateFunction;
+    }
+    
+    public void clickHinzufugenBtn()
+    {
+        btnHinzufugen.click();
+        // BrowserUtils.waitForVisibility(functionPanel,5);
+        BrowserUtils.waitFor(6);
+    }
+
+    public void selectCbb(WebElement cbb, WebElement cbbOption)
+    {
+        cbb.click();
+        BrowserUtils.clickWithJS(cbb);
+        BrowserUtils.waitForVisibility(cbbOption,4);
+        WebElement element = cbbOption;
+        element.click();
+        System.out.println(element.getText());
+        BrowserUtils.waitFor(4);
+    }
+
+    public void selectOrganisation(WebElement cbbOption)
+    {
+        selectCbb(cbbOrganisation, cbbOption);
+    }
+
+    public void selectRole(WebElement cbbOption)
+    {
+       selectCbb(cbbRole, cbbOption);
+    }
 
     public WebElement getListTable() { return listTable; }
 
@@ -106,6 +177,7 @@ public class FunctionPage extends Base {
     }
 
     public void clickFunctionBtn() {
+        BrowserUtils.waitFor(2);
         if (btnFunction.isEnabled()) {
             btnFunction.click();
             BrowserUtils.waitForVisibility(mainMenuBar, 10);
