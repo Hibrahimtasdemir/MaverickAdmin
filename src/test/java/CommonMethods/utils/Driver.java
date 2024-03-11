@@ -87,7 +87,7 @@ public class Driver {
         }
 
         driverPool.get().manage().window().maximize();
-//        driverPool.get().manage().deleteAllCookies();
+        driverPool.get().manage().deleteAllCookies();
         driverPool.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         /*

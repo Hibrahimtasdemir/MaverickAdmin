@@ -54,32 +54,79 @@ public class FunctionPage extends Base {
     private WebElement btnCreateFunction;
 
     @FindBy(css = "div.ms-ComboBox-container:nth-child(1)>div")
-    private WebElement cbbOrganisation;
+    private WebElement comboBoxOrganisation;
+
+  // @FindBy(css = "div.ms-ComboBox-container:nth-child(1) input")
+    //private WebElement comboBoxOrganizationEinheit;
 
     @FindBy(css = "div.ms-ComboBox-container:nth-child(2) input")
-    private WebElement cbbRole;
+    private WebElement comboBoxRole;
 
-    @FindBy(xpath = "//span[text()='103']")
-    private WebElement cbbOrg103;
+    @FindBy(xpath = "//div[@data-list-index='6']")
+    private WebElement comboBoxOrg103;
 
     @FindBy(xpath = "//span[text()='Lesen']")
     private WebElement cbbRoleLesen;
+    //(//button[@type='button'])[25]
 
+    @FindBy(xpath = "(//div[@class='ms-List-page'])[2]")
+    private WebElement functionRoleList;
     @FindBy(xpath = "//button[@title='Hinzufügen']")
     private WebElement btnHinzufugen;
 
-    public WebElement getBtnHinzufugen() {
+   @FindBy(xpath = "(//div[@role='radio'])[5]")
+   private WebElement functionCheckBox;
+   @FindBy(xpath = "//button[@title='Löschen']")
+    private WebElement btnLöschen;
+   @FindBy(css = "span.ms-Dialog-action:nth-child(1)")
+   private WebElement confirmLöschen;
+
+    public WebElement getComboBoxRole() {
         BrowserUtils.waitFor(2);
+        comboBoxRole.click();
+        return comboBoxRole;
+    }
+    public WebElement getComboBoxOrganisation() {
+        BrowserUtils.waitFor(2);
+        comboBoxOrganisation.click();
+        return comboBoxOrganisation;
+    }
+    public void confirmLöschenButton(){
+        confirmLöschen.click();
+    }
+    public void functionCheckBoxClick(){
+
+        BrowserUtils.waitFor( 3);
+        functionCheckBox.click();
+    }
+    public WebElement getBtnLöschen() {
+        BrowserUtils.waitFor(3);
+        return btnLöschen;
+    }
+    public void buttonLöschenMainBar(){
+        BrowserUtils.waitFor(2);
+        btnLöschen.click();
+    }
+    public WebElement getFunctionRoleList() {
+        BrowserUtils.waitForVisibility(functionRoleList, 4);
+        return functionRoleList;
+    }
+    public WebElement getBtnHinzufugen() {
+        BrowserUtils.waitFor(3);
+        btnHinzufugen.click();
         return btnHinzufugen;
     }
 
-    public WebElement getCbbOrg103() {
-        BrowserUtils.waitForVisibility(cbbOrg103,5);
-        return cbbOrg103;
+    public WebElement getcomboBoxOrg103() {
+        BrowserUtils.waitFor(3);
+        BrowserUtils.clickWithJS(comboBoxOrg103);
+        comboBoxOrg103.click();
+        return comboBoxOrg103;
     }
 
     public WebElement getCbbRoleLesen() {
-        BrowserUtils.waitForVisibility(cbbRoleLesen,5);
+        BrowserUtils.waitFor(5);
+        cbbRoleLesen.click();
         return cbbRoleLesen;
     }
 
@@ -91,33 +138,35 @@ public class FunctionPage extends Base {
     {
         btnHinzufugen.click();
         // BrowserUtils.waitForVisibility(functionPanel,5);
-        BrowserUtils.waitFor(6);
+        BrowserUtils.waitFor(3);
     }
 
-    public void selectCbb(WebElement cbb, WebElement cbbOption)
-    {
+    public void selectCbb(WebElement cbb, WebElement cbbOption) {
         cbb.click();
         BrowserUtils.clickWithJS(cbb);
-        BrowserUtils.waitForVisibility(cbbOption,4);
-        WebElement element = cbbOption;
-        element.click();
-        System.out.println(element.getText());
-        BrowserUtils.waitFor(4);
+        BrowserUtils.waitForVisibility(cbbOption, 4);
+        cbbOption.click(); // Seçeneği tıkla
+        System.out.println("Selected option: " + cbbOption.getText()); // Seçilen seçeneği yazdır
+
     }
 
     public void selectOrganisation(WebElement cbbOption)
-    {
-        selectCbb(cbbOrganisation, cbbOption);
-    }
 
+
+    {
+        selectCbb(comboBoxOrganisation, cbbOption);
+    }
     public void selectRole(WebElement cbbOption)
+
     {
-       selectCbb(cbbRole, cbbOption);
+       selectCbb(comboBoxRole, cbbOption);
     }
+    public WebElement getListTable()
 
-    public WebElement getListTable() { return listTable; }
+    { return listTable; }
 
-    public WebElement getCompactTable() {
+    public WebElement getCompactTable()
+    {
         return compactTable;
     }
 

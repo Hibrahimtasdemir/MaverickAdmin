@@ -25,20 +25,14 @@
     </Appenders>
     <Loggers>
 
-        <Logger name="alpha.Demo" level="error" additivity="false">
-            <AppenderRef ref="Console"/>
-        </Logger>
-
         <logger name="io.netty" level="error" additivity="false">
             <AppenderRef ref="Console"/>
         </logger>
-
 
         <Root level="trace">
             <AppenderRef ref="RollingFile"/>
             <AppenderRef ref="Console"/>
             <AppenderRef ref="MyFile"/>
-
         </Root>
     </Loggers>
 </Configuration>

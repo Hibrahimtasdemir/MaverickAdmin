@@ -202,7 +202,7 @@ public class BrowserUtils {
     }
 
 
-    // My method - return all open windows urls except main page - my method -EsmaY
+    // My method - return all open windows urls except main page - my method -
     public static ArrayList<String> getAllWindowsUrls() {
         Set<String> windows = Driver.getDriver().getWindowHandles();
         Iterator<String> it = windows.iterator();
@@ -217,7 +217,7 @@ public class BrowserUtils {
         return urls;
     }
 
-    // My method - getElementFromGetText() - new version - my method -EsmaY
+    // My method - getElementFromGetText() - new version - my method
     public static WebElement getElementFromGetText(String text) {
         By element = By.xpath("//*[contains(text(), '" + text + "')]");
         WebElement found = null;

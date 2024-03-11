@@ -80,7 +80,7 @@ public class OutUtils {
 
         ExtentReports extent = new ExtentReports();
         extent.attachReporter(reporter);
-        extent.setSystemInfo("Tester", "Elektroyazilim");
+        extent.setSystemInfo("Tester", "Halil Ibrahim TASDEMIR");
 
         return extent;
     }
