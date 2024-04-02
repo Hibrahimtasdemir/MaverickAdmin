@@ -14,17 +14,11 @@ public class US002_Menu_Create_New_Function extends POManager {
         getFunctionPage().openBrowser(Config.getProperty("url"));
         getFunctionPage().writeSearchText("Funktionen");
         getFunctionPage().clickFunctionBtn();
-
         Assert.assertTrue(getFunctionPage().getBtnHinzufugen().isEnabled());
+        getFunctionPage().selectOrganisation(getFunctionPage().getComboBoxOrganisation());
+        getFunctionPage().selectRole(getFunctionPage().getCbbRoleLesen());
+        Assert.assertTrue(getFunctionPage().getBtnCreateFunction().getAttribute("class").contains("is-disabled"));
 
-        getFunctionPage().getBtnHinzufugen();
-
-        //getFunctionPage().selectOrganisation(getFunctionPage().getComboBoxOrganisation());
-
-       // getFunctionPage().selectRole(getFunctionPage().getCbbRoleLesen());
-        //Assert.assertTrue(getFunctionPage().getBtnCreateFunction().getAttribute("class").contains("is-disabled"));
-
-        //Assert.assertTrue(getFunctionPage().getBtnCreateFunction().getAttribute("class").contains("is-disabled"));
 
 
 

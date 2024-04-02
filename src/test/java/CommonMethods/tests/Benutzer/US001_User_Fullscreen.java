@@ -15,16 +15,13 @@ public class US001_User_Fullscreen extends POManager {
         getBenutzerPage()
                 .writeSearchText("Benutzer");
         getBenutzerPage()
-                .clickFunctionBtn();
-
+                .clickBenutzerBtn();
         Assert.assertTrue(getBenutzerPage().getBlueRibbon().isDisplayed());
         Assert.assertTrue(getBenutzerPage().getSideBar().isDisplayed());
-
         getBenutzerPage()
                 .user_Fullscreen_Button();
         Assert.assertFalse(getBenutzerPage().isSideBarDisplayed());
         //Assert.assertTrue(getBenutzerPage().getBlueRibbonControlElement().isDisplayed()); //TODO: js ile coz
-
         getBenutzerPage()
                 .user_Fullscreen_Button();
         Assert.assertTrue(getBenutzerPage().getBlueRibbon().isDisplayed());
