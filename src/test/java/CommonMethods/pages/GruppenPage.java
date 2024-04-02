@@ -14,36 +14,26 @@ public class GruppenPage extends Base {
      */
     @FindBy(xpath = "//button[@title='Hinzufügen']")
     private WebElement btnHinzufugen;
-
     @FindBy(xpath = "//span[text()='Erstellen']")
     private WebElement createGroupScreen;
-
     @FindBy(css = "#commandBarContainer")
     private WebElement mainMenuBar;
-
     @FindBy(css = "#SearchBox17")
     private WebElement txtSearchbox;
-
     @FindBy(css = ".highlighted.highlighted-211")
     private WebElement btnGruppen;
-
     @FindBy(xpath = "(//input[@type='text'])[1]")
     private WebElement createGroupName;
-
     @FindBy(xpath = "//span[text()='Erstellen']")
     private WebElement btnErstellen;
-
     @FindBy(xpath = "//input[@role='combobox']")
     private WebElement gruppenMitglieder;
-
+    @FindBy(xpath = "(//span[text()='A365T_REGZ'])[1]")
+    private WebElement selectedMitglieder;
     public WebElement getBtnHinzufügen() {
         BrowserUtils.waitFor(4);
         return btnHinzufugen;
     }
-
-    @FindBy(xpath = "(//span[text()='A365T_REGZ'])[1]")
-    private WebElement selectedMitglieder;
-
     public WebElement getSelectedMitglieder() {
         return selectedMitglieder;
     }
@@ -70,7 +60,6 @@ public class GruppenPage extends Base {
         txtSearchbox.click();
         txtSearchbox.sendKeys(searchText);
     }
-
     public void clickErstellenBtn(){
         BrowserUtils.waitFor(2);
         if (btnErstellen.isEnabled()){

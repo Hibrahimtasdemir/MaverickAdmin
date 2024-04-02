@@ -13,52 +13,42 @@ import static CommonMethods.pagefactory.Annotations.driver;
 public class BenutzerPage extends Base {
     @FindBy(css = "#SearchBox17")
     private WebElement txtSearchbox;
-
     @FindBy(css = ".highlighted.highlighted-211")
-    private WebElement btnFunction;
+    private WebElement btnBenutzer;
     @FindBy(xpath = "//button[@aria-label='Vollbildschirm']")
     private WebElement btnFullScreen;
     @FindBy(css = "#commandBarContainer")
     private WebElement mainMenuBar;
     @FindBy(xpath = "//div[@data-focuszone-id='FocusZone2']")
     private WebElement blueRibbon;
-
     @FindBy(css = "#contentContainer")
     private WebElement sideBar;
-
     @FindBy(xpath = "//div[contains(@class,'headerInvisible')]")
     private WebElement blueRibbonControlElement;
-
     @FindBy(css = ".navbarContent")
     private List<WebElement> sideBarControlElement;
-
     @FindBy(css = ".ms-BaseButton-menuhost")
     private WebElement listeOptionMenu;
-
     @FindBy(xpath = "(//button[@role='menuitem'])[2]")
     private WebElement userListBtn;
-
     @FindBy(xpath = "(//button[@role='menuitemcheckbox'])[2]")
     private WebElement clickKompakte;
-
-    public List<WebElement> getList() {
-        BrowserUtils.takeScreenshot("Kompakte");
-        return list;
-    }
-
     @FindBy(css = ".ms-List-cell")
     private List<WebElement> list;
+    public List<WebElement> getList() {
+        BrowserUtils.takeScreenshot("Kompakte");
+        System.out.println("Print the elements" + list.size());
+        return list;
+    }
     public void openBrowser(String url) {
         driver.get(url);
         BrowserUtils.waitFor(4);
     }
-
     public WebElement getBlueRibbonControlElement() {
 //        BrowserUtils.waitForVisibility(blueRibbonControlElement,10);
         BrowserUtils.waitFor(5);
         return blueRibbonControlElement;
     }
-
     public boolean isSideBarDisplayed() {
 //        BrowserUtils.waitForVisibility(sideBarControlElement,10);
         BrowserUtils.waitFor(2);
@@ -75,25 +65,23 @@ public class BenutzerPage extends Base {
         txtSearchbox.sendKeys(searchText);
     }
 
-    public void clickFunctionBtn() {
+    public void clickBenutzerBtn() {
         BrowserUtils.waitFor(2);
-        if (btnFunction.isEnabled()) {
-            btnFunction.click();
+        if (btnBenutzer.isEnabled()) {
+            btnBenutzer.click();
             BrowserUtils.waitForVisibility(mainMenuBar, 10);
         }
     }
-
     public WebElement getBlueRibbon() {
         BrowserUtils.waitFor( 3);
         return blueRibbon;
     }
-
     public WebElement getSideBar() {
         BrowserUtils.waitForVisibility(sideBar, 3);
         return sideBar;
     }
 /*
-    To click on the list on the right side of the blue ribbon on the top.
+    To click on the list of the right side of the blue ribbon on the top.
  */
     public WebElement getListeOptionMenu() {
         BrowserUtils.waitFor( 5);

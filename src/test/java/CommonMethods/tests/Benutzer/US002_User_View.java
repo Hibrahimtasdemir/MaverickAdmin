@@ -16,7 +16,7 @@ public class US002_User_View extends POManager {
         getBenutzerPage()
                 .writeSearchText("Benutzer");
         getBenutzerPage()
-                .clickFunctionBtn();
+                .clickBenutzerBtn();
         getBenutzerPage()
                 .getUserListBtn();
         Assert.assertTrue(getBenutzerPage().getListeOptionMenu().isDisplayed());
