@@ -11,12 +11,19 @@ public class US003_Function_Delete extends POManager {
     public void TC001_Function_Delete(){
 
         getFunctionPage().openBrowser(Config.getProperty("url"));
+
         getFunctionPage().writeSearchText("Funktionen");
+
         getFunctionPage().clickFunctionBtn();
+
         Assert.assertTrue(getFunctionPage().getBtnLoschen().getAttribute("aria-disabled").contains("true"));
+
         getFunctionPage().functionCheckBoxClick();
+
         Assert.assertTrue(getFunctionPage().getBtnLoschen().isEnabled());
+
         getFunctionPage().buttonLöschenMainBar();
+
         getFunctionPage().confirmLöschenButton();
 
     }

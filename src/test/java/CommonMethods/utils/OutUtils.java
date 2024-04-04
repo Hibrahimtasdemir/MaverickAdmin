@@ -9,6 +9,8 @@ import org.apache.logging.log4j.*;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
@@ -109,6 +111,21 @@ public class OutUtils {
     }
 
 }
-
 // relative path kabul etmiyorsa
 // String destFile = System.getProperty("user.dir") + "\\outs\\"+testCaseName + ".png";
+
+ /*
+    public static void downloadFile( String downloadDir, String url, String downloadButtonId){
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless"); // Optional: run Chrome in headless mode
+        options.addArguments("--disable-gpu"); // Disable GPU acceleration (necessary for headless mode)
+        options.addArguments("--window-size=1920,1080"); // Set window size (necessary for headless mode)
+        options.addArguments("--no-sandbox"); // Bypass OS security model
+        options.addArguments("--disable-dev-shm-usage"); // Disable shared memory usage (necessary for headless mode)
+        options.setExperimentalOption("prefs", getChromePreferences(downloadDir));
+    }
+    private static String getChromePreferences(String downloadDir) {
+        return "{\"download.default_directory\": \"" + downloadDir + "\"," +
+                "\"download.prompt_for_download\": false," +
+                "\"safebrowsing.enabled\": false}";
+    } */
