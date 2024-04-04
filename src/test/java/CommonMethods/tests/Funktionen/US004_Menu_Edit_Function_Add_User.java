@@ -63,5 +63,8 @@ public class US004_Menu_Edit_Function_Add_User extends POManager {
         getFunctionPage().getBtnEdit();
         Assert.assertTrue(getFunctionPage().getNewCreatedAssignment().isDisplayed());
 
+        getFunctionPage().btnsecondLoschen();
+        getFunctionPage().clickSpeichernButton();
+
     }
 }

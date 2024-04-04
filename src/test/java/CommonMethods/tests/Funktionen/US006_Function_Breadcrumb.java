@@ -5,7 +5,7 @@ import CommonMethods.utils.Config;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class US_006_Function_Breadcrumb extends POManager {
+public class US006_Function_Breadcrumb extends POManager {
 
     @Test(description = "23296 Functions_Breadcrumb_Navigation")
     public void TC001_Breadcrumb_Navigation(){

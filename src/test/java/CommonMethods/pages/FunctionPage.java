@@ -2,6 +2,7 @@ package CommonMethods.pages;
 
 import CommonMethods.pagefactory.Base;
 import CommonMethods.utils.BrowserUtils;
+import CommonMethods.utils.OutUtils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -21,6 +22,8 @@ public class FunctionPage extends Base {
     private WebElement btnEdit;
     @FindBy(xpath = "(//button[@type='button'])[24]")
     private WebElement btnUser;
+
+
     @FindBy(css = "#commandBarContainer")
     private WebElement mainMenuBar;
     @FindBy(xpath = "//*[text()='Liste']")
@@ -46,18 +49,20 @@ public class FunctionPage extends Base {
     //private WebElement comboBoxOrganizationEinheit;
     @FindBy(css = "div.ms-ComboBox-container:nth-child(2) input")
     private WebElement comboBoxRole;
-    @FindBy(xpath = "//div[@data-list-index='6']")
-    private WebElement comboBoxOrg103;
     @FindBy(xpath = "//span[text()='Lesen']")
     private WebElement cbbRoleLesen;
     @FindBy(xpath = "(//div[@class='ms-List-page'])[2]")
     private WebElement functionRoleList;
     @FindBy(xpath = "//button[@title='Hinzufügen']")
     private WebElement btnHinzufugen;
-    @FindBy(xpath = "(//div[@role='radio'])[5]")
+    @FindBy(xpath = "(//div[@role='radio'])[10]")
     private WebElement functionCheckBox;
+    @FindBy(xpath = "(//div[@role='radio'])[4]")
+    private WebElement functionCheckBoxForRemove;
     @FindBy(xpath = "//button[@title='Löschen']")
     private WebElement btnLoschen;
+    @FindBy(xpath = "(//button[@title='Löschen'])[2]")
+    private WebElement btnLoschen2;
     @FindBy(css = "span.ms-Dialog-action:nth-child(1)")
     private WebElement confirmLoschen;
     @FindBy(xpath = "(//input[@type='text'])[2]")
@@ -80,7 +85,7 @@ public class FunctionPage extends Base {
     private WebElement aktuellerMonat;
     @FindBy(xpath = "//span[contains(text(),'Nächste Woche')]")
     private WebElement nächsteWoche;
-    @FindBy(xpath = "//span[contains(text(),'Nächste Woche')]")
+    @FindBy(xpath = "//span[contains(text(),'Nächster Monat')]")
     private WebElement nächsterMonat;
     @FindBy(xpath = "//div[contains(text(),'123@123.de')]")
     private WebElement userNameVerify;
@@ -114,18 +119,44 @@ public class FunctionPage extends Base {
     private WebElement newCreatedAssignment;
     @FindBy(css = ".Toastify")
     private WebElement notificationPanel;
-    @FindBy(xpath = "(//span[@class='css-333'])[2]")
-    private WebElement anzahlMitglieder;
-    @FindBy(xpath = "(//span[@class='css-333'])[4]")
-    private WebElement letzteAktualizierung;
+    @FindBy(css = ".ms-Panel-navigation")
+    private WebElement memberAndUpdate;
+    @FindBy(css = ".ms-Persona-details")
+    private WebElement functionEmptyPanel;
+    @FindBy(xpath = "//span[text()='Herunterladen']")
+    private WebElement btnHerunterladen;
 
+    public WebElement getMainMenuBar() {
+        return mainMenuBar;
+    }
+    public WebElement setBtnHerunterladen(){
+        BrowserUtils.waitFor(2);
+        btnHerunterladen.click();
+    return btnHerunterladen;
+    }
+    public void setFunctionEmptyPanel(){
+        BrowserUtils.waitFor(2);
+        if (!functionEmptyPanel.isDisplayed()){
+            System.out.println("No assignment");
+        }
+    }
+
+    public WebElement getMemberAndUpdate(){
+        BrowserUtils.waitFor(2);
+        System.out.println(memberAndUpdate.getText());
+        return memberAndUpdate;
+    }
+    public void btnsecondLoschen(){
+        BrowserUtils.waitFor(4);
+        BrowserUtils.clickWithJS(btnLoschen2);
+    }
     public WebElement getNewCreatedAssignment() {
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(4);
         System.out.println(newCreatedAssignment.getText());
         return newCreatedAssignment;
     }
     public WebElement getNotificationPanel() {
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(4);
         System.out.println(notificationPanel.getText());
         return notificationPanel;
     }
@@ -165,7 +196,7 @@ public class FunctionPage extends Base {
         Assert.assertTrue(getButtonUbernehmen().isEnabled());
     }
     public WebElement getBtnEdit() {
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitFor(3);
         btnEdit.click();
         return btnEdit;
     }
@@ -273,6 +304,10 @@ public class FunctionPage extends Base {
         BrowserUtils.waitFor(3);
         functionCheckBox.click();
     }
+    public void setFunctionCheckBoxForRemove(){
+        BrowserUtils.waitFor(3);
+        functionCheckBoxForRemove.click();
+    }
     public WebElement getBtnLoschen() {
         BrowserUtils.waitFor(3);
         return btnLoschen;
@@ -291,12 +326,6 @@ public class FunctionPage extends Base {
             btnHinzufugen.click();
         }
         return btnHinzufugen;
-    }
-    public WebElement getcomboBoxOrg103() {
-        BrowserUtils.waitFor(3);
-        BrowserUtils.clickWithJS(comboBoxOrg103);
-        comboBoxOrg103.click();
-        return comboBoxOrg103;
     }
     public WebElement getCbbRoleLesen() {
         BrowserUtils.waitFor(3);
@@ -318,9 +347,11 @@ public class FunctionPage extends Base {
 
     }
     public void selectOrganisation(WebElement cbbOption) {
+        BrowserUtils.waitFor(3);
         selectCbb(comboBoxOrganisation, cbbOption);
     }
     public void selectRole(WebElement cbbOption) {
+        BrowserUtils.waitFor(3);
         selectCbb(comboBoxRole, cbbOption);
     }
     public WebElement getListTable() {return listTable;}
