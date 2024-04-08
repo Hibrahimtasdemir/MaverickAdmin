@@ -2,11 +2,16 @@ package CommonMethods.tests.Funktionen;
 
 import CommonMethods.pagefactory.POManager;
 import CommonMethods.utils.Config;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class US007_Menu_Edit_Function_Remove extends POManager {
 
+    @Severity(SeverityLevel.CRITICAL)
+    @Description("Test for removing a user from the function")
     @Test(description = "23051 Functions_Menu_Edit Function: Remove User(s)")
     public void TC01_Edit_Function_Remove_User(){
 
@@ -31,6 +36,7 @@ public class US007_Menu_Edit_Function_Remove extends POManager {
         getFunctionPage().setAktuellerMonat();
         getFunctionPage().clickUbernehmenButton();
         getFunctionPage().clickSpeichernButton();
+
 
     }
 }

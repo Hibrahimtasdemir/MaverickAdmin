@@ -1,2 +1,4 @@
-16:24:44.528 [TestNG-tests-1] INFO  CommonMethods.listener.ExtentReportListener - (ExtentReportListener.java:36) - On Test Failure : TC001_Functions_Show_Functions
-16:24:44.563 [TestNG-tests-1] INFO  CommonMethods.listener.ExtentReportListener - (ExtentReportListener.java:36) - On Test Failure : TC001_Functions_Show_Functions
+17:18:36.221 [TestNG-tests-1] INFO  CommonMethods.listener.AllureReportListener - (AllureReportListener.java:50) - Testname : TC001_Functions_Show_Functions
+17:18:36.229 [TestNG-tests-1] INFO  CommonMethods.listener.ExtentReportListener - (ExtentReportListener.java:23) - Testname : TC001_Functions_Show_Functions
+17:19:03.861 [TestNG-tests-1] INFO  CommonMethods.listener.ExtentReportListener - (ExtentReportListener.java:36) - On Test Failure : TC001_Functions_Show_Functions
+17:19:04.704 [TestNG-tests-1] INFO  CommonMethods.listener.AllureReportListener - (AllureReportListener.java:62) - On Test Failure : TC001_Functions_Show_Functions
