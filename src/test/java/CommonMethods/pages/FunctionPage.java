@@ -2,7 +2,7 @@ package CommonMethods.pages;
 
 import CommonMethods.pagefactory.Base;
 import CommonMethods.utils.BrowserUtils;
-import CommonMethods.utils.OutUtils;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -125,7 +125,71 @@ public class FunctionPage extends Base {
     private WebElement functionEmptyPanel;
     @FindBy(xpath = "//span[text()='Herunterladen']")
     private WebElement btnHerunterladen;
+    @FindBy(xpath = "//div[@data-focuszone-id='FocusZone2']")
+    private WebElement blueRibbon;
+    @FindBy(css = "#contentContainer")
+    private WebElement sideBar;
+    @FindBy(xpath = "//button[@aria-label='Vollbildschirm']")
+    private WebElement btnFullScreen;
+    @FindBy(css = ".navbarContent")
+    private List<WebElement> sideBarControlElement;
+    @FindBy(xpath = "(//span[text()='Organisationseinheit'])[1]")
+    private WebElement organizationEinheitFiltern;
+    @FindBy(xpath = "//i[@data-icon-name='CheckMark']")
+    private List<WebElement> checkboxOrganizationEinheit;
+    @FindBy(css = ".ms-DetailsList-contentWrapper")
+    private  WebElement contentWrapperOrganizationEinheit;
 
+
+    public WebElement getContentWrapperOrganizationEinheit() {
+        BrowserUtils.waitFor(3);
+        return contentWrapperOrganizationEinheit;
+    }
+    public List<WebElement> clickCheckBoxOrganizationEinheit() {
+        BrowserUtils.waitFor(3);
+        for (WebElement checkbox : checkboxOrganizationEinheit) {
+            checkbox.click();
+        }
+        return checkboxOrganizationEinheit;
+    }
+       /* for (int i = 0; i < 3 && i < checkboxOrganizationEinheit.size(); i++) {
+            checkboxOrganizationEinheit.get(i).click();
+            break;
+            //return clickCheckBoxOrganizationEinheit(); // checkboxOrganizationEinheit.isEmpty() ? null : checkboxOrganizationEinheit.get(0);
+        }*/
+
+
+    public void clickOrganizationEinheitFiltern(){
+        BrowserUtils.waitFor(2);
+        organizationEinheitFiltern.click();
+    }
+    public boolean isSideBarDisplayed() {
+//        BrowserUtils.waitForVisibility(sideBarControlElement,10);
+        BrowserUtils.waitFor(2);
+        if (sideBarControlElement.size() == 0) // bu element yoktur
+        {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * User click Fullscreen button
+     */
+    @Step("User clicks Full Screen Button")
+    public void function_Fullscreen_Button() {
+        BrowserUtils.waitFor(2);
+        btnFullScreen.click();
+    }
+    public WebElement getSideBar() {
+        BrowserUtils.waitForVisibility(sideBar, 3);
+        return sideBar;
+    }
+    public WebElement getBlueRibbon() {
+        BrowserUtils.waitFor( 3);
+        return blueRibbon;
+    }
     public WebElement getMainMenuBar() {
         return mainMenuBar;
     }
