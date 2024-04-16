@@ -11,21 +11,14 @@ public class US002_User_View extends POManager {
 
     public void TC_01_USerView_Kompakt_Liste(){
 
-        getBenutzerPage()
-                .openBrowser(Config.getProperty("url"));
-        getBenutzerPage()
-                .writeSearchText("Benutzer");
-        getBenutzerPage()
-                .clickBenutzerBtn();
-        getBenutzerPage()
-                .getUserListBtn();
+        getBenutzerPage().openBrowser(Config.getProperty("url"));
+        getBenutzerPage().writeSearchText("Benutzer");
+        getBenutzerPage().clickBenutzerBtn();
+        getBenutzerPage().getUserListBtn();
         Assert.assertTrue(getBenutzerPage().getListeOptionMenu().isDisplayed());
-        getBenutzerPage()
-                .getClickKompakte();
-        getBenutzerPage()
-                .getList();
-        getBenutzerPage()
-                .getUserListBtn();
+        getBenutzerPage().getClickKompakte();
+        getBenutzerPage().getList();
+        getBenutzerPage().getUserListBtn();
         Assert.assertTrue(getBenutzerPage().getListeOptionMenu().isDisplayed());
 
     }

@@ -22,8 +22,6 @@ public class FunctionPage extends Base {
     private WebElement btnEdit;
     @FindBy(xpath = "(//button[@type='button'])[24]")
     private WebElement btnUser;
-
-
     @FindBy(css = "#commandBarContainer")
     private WebElement mainMenuBar;
     @FindBy(xpath = "//*[text()='Liste']")
@@ -59,6 +57,10 @@ public class FunctionPage extends Base {
     private WebElement functionCheckBox;
     @FindBy(xpath = "(//div[@role='radio'])[4]")
     private WebElement functionCheckBoxForRemove;
+    @FindBy(xpath = "(//div[@role='radio'])[7]")
+    private WebElement functionCheckBoxForDropdown;
+    @FindBy(xpath = "(//i[@data-icon-name='MoreVertical'])[7]")
+    private WebElement functionDropdown;
     @FindBy(xpath = "//button[@title='Löschen']")
     private WebElement btnLoschen;
     @FindBy(xpath = "(//button[@title='Löschen'])[2]")
@@ -134,16 +136,38 @@ public class FunctionPage extends Base {
     @FindBy(css = ".navbarContent")
     private List<WebElement> sideBarControlElement;
     @FindBy(xpath = "(//span[text()='Organisationseinheit'])[1]")
-    private WebElement organizationEinheitFiltern;
+    private WebElement organizationEinheitFilter;
+    @FindBy(xpath = "(//span[text()='Rolle'])[1]")
+    private WebElement rolleFilter;
     @FindBy(xpath = "//i[@data-icon-name='CheckMark']")
     private List<WebElement> checkboxOrganizationEinheit;
+    @FindBy(xpath = "//i[@data-icon-name='CheckMark']")
+    private List<WebElement> checkboxRolle;
     @FindBy(css = ".ms-DetailsList-contentWrapper")
-    private  WebElement contentWrapperOrganizationEinheit;
+    private  WebElement contentWrapper;
 
 
-    public WebElement getContentWrapperOrganizationEinheit() {
+
+    @FindBy(css = "ul.ms-ContextualMenu-list")
+    private WebElement BearbeitenUndLöschenDisplay;
+
+    public WebElement getBearbeitenUndLöschenDisplay() {
+        return BearbeitenUndLöschenDisplay;
+    }
+    public void setFunctionDropdown(){
+        BrowserUtils.waitFor(2);
+        functionDropdown.click();
+    }
+    public WebElement getContentWrapper() {
         BrowserUtils.waitFor(3);
-        return contentWrapperOrganizationEinheit;
+        return contentWrapper;
+    }
+    public List<WebElement> clickCheckBoxRolle(){
+        BrowserUtils.waitFor(2);
+        for (WebElement checkbox : checkboxRolle){
+            checkbox.click();
+        }
+        return checkboxRolle;
     }
     public List<WebElement> clickCheckBoxOrganizationEinheit() {
         BrowserUtils.waitFor(3);
@@ -159,9 +183,13 @@ public class FunctionPage extends Base {
         }*/
 
 
+    public void clickRolleFiltern(){
+        BrowserUtils.waitFor(2);
+        rolleFilter.click();
+    }
     public void clickOrganizationEinheitFiltern(){
         BrowserUtils.waitFor(2);
-        organizationEinheitFiltern.click();
+        organizationEinheitFilter.click();
     }
     public boolean isSideBarDisplayed() {
 //        BrowserUtils.waitForVisibility(sideBarControlElement,10);
@@ -371,6 +399,10 @@ public class FunctionPage extends Base {
     public void setFunctionCheckBoxForRemove(){
         BrowserUtils.waitFor(3);
         functionCheckBoxForRemove.click();
+    }
+    public void setFunctionCheckBoxForDropdown(){
+        BrowserUtils.waitFor(2);
+        functionCheckBoxForDropdown.click();
     }
     public WebElement getBtnLoschen() {
         BrowserUtils.waitFor(3);
