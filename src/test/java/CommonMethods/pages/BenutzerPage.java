@@ -84,7 +84,7 @@ public class BenutzerPage extends Base {
     To click on the list of the right side of the blue ribbon on the top.
  */
     public WebElement getListeOptionMenu() {
-        BrowserUtils.waitFor( 5);
+        BrowserUtils.waitFor( 3);
         return listeOptionMenu;
     }
     public WebElement getClickKompakte() {
