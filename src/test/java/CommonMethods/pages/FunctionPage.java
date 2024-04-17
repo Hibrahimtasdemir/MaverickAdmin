@@ -4,6 +4,7 @@ import CommonMethods.pagefactory.Base;
 import CommonMethods.utils.BrowserUtils;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.Browser;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
@@ -69,8 +70,8 @@ public class FunctionPage extends Base {
     private WebElement confirmLoschen;
     @FindBy(xpath = "(//input[@type='text'])[2]")
     private WebElement chooseEndDatum;
-   @FindBy(xpath = "(//div[starts-with(@class,'ms-Stack root')])[4]")
-   private WebElement datePickerControl;
+    @FindBy(xpath = "(//div[starts-with(@class,'ms-Stack root')])[4]")
+    private WebElement datePickerControl;
     @FindBy(css = "span.ms-Dialog-action:nth-child(1)")
     private WebElement btnUbernehmen;
     @FindBy(css = "span.ms-Dialog-action:nth-child(1)")
@@ -114,7 +115,7 @@ public class FunctionPage extends Base {
     @FindBy(xpath = ".//button[@role='option']")
     private List<WebElement> listOfTimeAssignments;
     @FindBy(xpath = "//button[@role='menuitemcheckbox']")
-    private List <WebElement> listOfOrganizationStruktur;
+    private List<WebElement> listOfOrganizationStruktur;
     @FindBy(xpath = "(//button[contains(@class,'ms-ContextualMenu-link')])[4]")
     private WebElement clickBreadcrumb;
     @FindBy(css = ".ms-Persona-details")
@@ -144,31 +145,39 @@ public class FunctionPage extends Base {
     @FindBy(xpath = "//i[@data-icon-name='CheckMark']")
     private List<WebElement> checkboxRolle;
     @FindBy(css = ".ms-DetailsList-contentWrapper")
-    private  WebElement contentWrapper;
-
-
-
+    private WebElement contentWrapper;
+    @FindBy(xpath = "(//span[text()='Abbrechen'])[2]")
+    private WebElement btnAbbrechen;
     @FindBy(css = "ul.ms-ContextualMenu-list")
-    private WebElement BearbeitenUndLöschenDisplay;
+    private WebElement BearbeitenUndLoschenDisplay;
 
-    public WebElement getBearbeitenUndLöschenDisplay() {
-        return BearbeitenUndLöschenDisplay;
+    public void setClickAbbrechen() {
+        BrowserUtils.waitFor(3);
+        btnAbbrechen.click();
     }
-    public void setFunctionDropdown(){
+
+    public WebElement getBearbeitenUndLoschenDisplay() {
+        return BearbeitenUndLoschenDisplay;
+    }
+
+    public void setFunctionDropdown() {
         BrowserUtils.waitFor(2);
         functionDropdown.click();
     }
+
     public WebElement getContentWrapper() {
         BrowserUtils.waitFor(3);
         return contentWrapper;
     }
-    public List<WebElement> clickCheckBoxRolle(){
+
+    public List<WebElement> clickCheckBoxRolle() {
         BrowserUtils.waitFor(2);
-        for (WebElement checkbox : checkboxRolle){
+        for (WebElement checkbox : checkboxRolle) {
             checkbox.click();
         }
         return checkboxRolle;
     }
+
     public List<WebElement> clickCheckBoxOrganizationEinheit() {
         BrowserUtils.waitFor(3);
         for (WebElement checkbox : checkboxOrganizationEinheit) {
@@ -183,14 +192,16 @@ public class FunctionPage extends Base {
         }*/
 
 
-    public void clickRolleFiltern(){
+    public void clickRolleFiltern() {
         BrowserUtils.waitFor(2);
         rolleFilter.click();
     }
-    public void clickOrganizationEinheitFiltern(){
+
+    public void clickOrganizationEinheitFiltern() {
         BrowserUtils.waitFor(2);
         organizationEinheitFilter.click();
     }
+
     public boolean isSideBarDisplayed() {
 //        BrowserUtils.waitForVisibility(sideBarControlElement,10);
         BrowserUtils.waitFor(2);
@@ -210,52 +221,62 @@ public class FunctionPage extends Base {
         BrowserUtils.waitFor(2);
         btnFullScreen.click();
     }
+
     public WebElement getSideBar() {
         BrowserUtils.waitForVisibility(sideBar, 3);
         return sideBar;
     }
+
     public WebElement getBlueRibbon() {
-        BrowserUtils.waitFor( 3);
+        BrowserUtils.waitFor(3);
         return blueRibbon;
     }
+
     public WebElement getMainMenuBar() {
         return mainMenuBar;
     }
-    public WebElement setBtnHerunterladen(){
+
+    public WebElement setBtnHerunterladen() {
         BrowserUtils.waitFor(2);
         btnHerunterladen.click();
-    return btnHerunterladen;
+        return btnHerunterladen;
     }
-    public void setFunctionEmptyPanel(){
+
+    public void setFunctionEmptyPanel() {
         BrowserUtils.waitFor(2);
-        if (!functionEmptyPanel.isDisplayed()){
+        if (!functionEmptyPanel.isDisplayed()) {
             System.out.println("No assignment");
         }
     }
 
-    public WebElement getMemberAndUpdate(){
+    public WebElement getMemberAndUpdate() {
         BrowserUtils.waitFor(2);
         System.out.println(memberAndUpdate.getText());
         return memberAndUpdate;
     }
-    public void btnsecondLoschen(){
+
+    public void btnsecondLoschen() {
         BrowserUtils.waitFor(4);
         BrowserUtils.clickWithJS(btnLoschen2);
     }
+
     public WebElement getNewCreatedAssignment() {
         BrowserUtils.waitFor(4);
         System.out.println(newCreatedAssignment.getText());
         return newCreatedAssignment;
     }
+
     public WebElement getNotificationPanel() {
         BrowserUtils.waitFor(4);
         System.out.println(notificationPanel.getText());
         return notificationPanel;
     }
+
     public void getClickBreadcrumb() {
         BrowserUtils.waitFor(3);
         BrowserUtils.clickWithJS(clickBreadcrumb);
     }
+
     public String getListOfOrganizationStruktur() {
         BrowserUtils.waitFor(5);
         StringBuilder actualStruktur = new StringBuilder();
@@ -265,115 +286,137 @@ public class FunctionPage extends Base {
         }
         return actualStruktur.toString().trim();
     }
+
     public boolean getListOfTimeAssignments(String[] expectedValues) {
         BrowserUtils.waitFor(2);
 
         for (String expectedValue : expectedValues) {
             boolean found = false;
-            for (WebElement option : listOfTimeAssignments){
-                if (option.getText().equals(expectedValue)){
+            for (WebElement option : listOfTimeAssignments) {
+                if (option.getText().equals(expectedValue)) {
                     found = true;
                     break;
                 }
             }
-            if (!found){
+            if (!found) {
                 return false;
             }
         }
-       return true;
+        return true;
     }
+
     public void getChooseEndDatum(String endDatumAuswahlen) {
         chooseEndDatum.sendKeys(endDatumAuswahlen);
         BrowserUtils.waitFor(2);
         Assert.assertTrue(getButtonUbernehmen().isEnabled());
     }
+
     public WebElement getBtnEdit() {
         BrowserUtils.waitFor(3);
         btnEdit.click();
         return btnEdit;
     }
-    public void setBreadcrumbIcon(){
+
+    public void setBreadcrumbIcon() {
         BrowserUtils.waitFor(2);
         breadcrumbIcon.click();
     }
-    public void setFilterIcon(){
-        BrowserUtils.waitFor(2);
+
+    public void setFilterIcon() {
+        BrowserUtils.waitFor(5);
         filterIcon.click();
     }
-    public void setStichwortFilternField(String stichwort){
-        BrowserUtils.waitFor(5);
+
+    public void StichwortFilternField(String stichwort) {
+        BrowserUtils.waitFor(10);
         stichwortFilternField.sendKeys(stichwort);
     }
-    public WebElement filteredList(){
+
+    public WebElement filteredList() {
         BrowserUtils.waitFor(5);
         if (filteredList.isDisplayed()) {
             System.out.println(filteredList.getText());
         }
         return filteredList;
     }
+
     public WebElement getUnbeschranktGultig() {
         BrowserUtils.waitFor(2);
         unbeschranktGultig.click();
 
         return unbeschranktGultig;
     }
-    public void setBenutzerDefiniert(){
+
+    public void setBenutzerDefiniert() {
         BrowserUtils.waitFor(2);
 
         benutzerDefiniert.click();
     }
+
     public void setAktuelleWoche() {
         BrowserUtils.waitFor(2);
         aktuelleWoche.click();
     }
-    public void setAktuellerMonat(){
+
+    public void setAktuellerMonat() {
         BrowserUtils.waitFor(2);
         aktuellerMonat.click();
     }
-    public void setNächsteWoche(){
+
+    public void setNächsteWoche() {
         BrowserUtils.waitFor(2);
         nächsteWoche.click();
     }
-    public void setNächsterMonat(){
+
+    public void setNächsterMonat() {
         BrowserUtils.waitFor(2);
         nächsterMonat.click();
     }
-    public WebElement getDatePickerControl(){
+
+    public WebElement getDatePickerControl() {
         return datePickerControl;
     }
-    public void  selectBenutzer(String AddUser)
-    {
+
+    public void selectBenutzer(String AddUser) {
         addUserInput.sendKeys(AddUser);
         BrowserUtils.waitForVisibility(userNameVerify, 4);
         clickOnUser.click();
     }
+
     public void setGultigkeitArea() {
         BrowserUtils.waitFor(2);
         BrowserUtils.clickWithJS(gultigkeitArea);
     }
-    public void clickUbernehmenButton(){
+
+    public void clickUbernehmenButton() {
         BrowserUtils.waitFor(2);
         clickUbernehmen.click();
     }
+
     public WebElement getButtonUbernehmen() {
         BrowserUtils.waitFor(2);
-       // btnUbernehmen.click();
+        // btnUbernehmen.click();
         return btnUbernehmen;
     }
-    public void clickSpeichernButton(){
+
+    public void clickSpeichernButton() {
         BrowserUtils.waitFor(4);
         clickSpeichern.click();
     }
+
     public WebElement getFunctionEditPanel() {
         return functionEditPanel;
     }
+
     public WebElement getUserNameVerify() {
         return userNameVerify;
     }
+
     public void clickNeuZuweisung() {
         BrowserUtils.waitFor(2);
         functionNeueZuweisung.click();
     }
+
     public WebElement getFunctionUserAddPanel() {
 
         return functionUserAddPanel;
@@ -384,26 +427,41 @@ public class FunctionPage extends Base {
         comboBoxRole.click();
         return comboBoxRole;
     }
+
     public WebElement getComboBoxOrganisation() {
         BrowserUtils.waitFor(2);
         comboBoxOrganisation.click();
         return comboBoxOrganisation;
     }
+
     public void confirmLöschenButton() {
         confirmLoschen.click();
     }
+
+    /*
+    Select the 10th checkbox in the function list
+     */
     public void functionCheckBoxClick() {
         BrowserUtils.waitFor(3);
         functionCheckBox.click();
     }
-    public void setFunctionCheckBoxForRemove(){
+
+    /*
+    Select the 4th checkbox in the function list (for removing)
+     */
+    public void setFunctionCheckBoxForRemove() {
         BrowserUtils.waitFor(3);
         functionCheckBoxForRemove.click();
     }
-    public void setFunctionCheckBoxForDropdown(){
+
+    /*
+     * Select the 7th function in the list (for dropdown)
+     */
+    public void setFunctionCheckBoxForDropdown() {
         BrowserUtils.waitFor(2);
         functionCheckBoxForDropdown.click();
     }
+
     public WebElement getBtnLoschen() {
         BrowserUtils.waitFor(3);
         return btnLoschen;
@@ -418,7 +476,7 @@ public class FunctionPage extends Base {
     }
     public WebElement getBtnHinzufugen() {
         BrowserUtils.waitFor(3);
-        if (btnHinzufugen.isEnabled()){
+        if (btnHinzufugen.isEnabled()) {
             btnHinzufugen.click();
         }
         return btnHinzufugen;
@@ -428,11 +486,12 @@ public class FunctionPage extends Base {
         cbbRoleLesen.click();
         return cbbRoleLesen;
     }
-    public WebElement getBtnCreateFunction() {return btnCreateFunction;}
-    public void clickHinzufugenBtn() {
-        btnHinzufugen.click();
-        // BrowserUtils.waitForVisibility(functionPanel,5);
-        BrowserUtils.waitFor(3);
+    public WebElement getBtnCreateFunction() {
+        BrowserUtils.waitFor(2);
+        if (btnCreateFunction.isEnabled()) {
+            btnCreateFunction.click();
+        }
+        return btnCreateFunction;
     }
     public void selectCbb(WebElement cbb, WebElement cbbOption) {
         cbb.click();
@@ -442,16 +501,25 @@ public class FunctionPage extends Base {
         System.out.println("Selected option: " + cbbOption.getText()); // Print the selected one
 
     }
+
     public void selectOrganisation(WebElement cbbOption) {
         BrowserUtils.waitFor(3);
         selectCbb(comboBoxOrganisation, cbbOption);
     }
+
     public void selectRole(WebElement cbbOption) {
         BrowserUtils.waitFor(3);
         selectCbb(comboBoxRole, cbbOption);
     }
-    public WebElement getListTable() {return listTable;}
-    public WebElement getCompactTable() {return compactTable;}
+
+    public WebElement getListTable() {
+        return listTable;
+    }
+
+    public WebElement getCompactTable() {
+        return compactTable;
+    }
+
     public void selectListView() {
         listMenu.click();
         BrowserUtils.waitForVisibility(listPanel, 2);
@@ -461,10 +529,12 @@ public class FunctionPage extends Base {
             BrowserUtils.waitForVisibility(listTable, 7);
         }
     }
+
     public void openBrowser(String url) {
         driver.get(url);
         BrowserUtils.waitFor(4);
     }
+
     public void selectCompactView() {
         // BrowserUtils.clickWithJS(listMenu);
         controlledClick(listMenu, listPanel);
@@ -475,6 +545,7 @@ public class FunctionPage extends Base {
             BrowserUtils.waitForVisibility(compactTable, 7);
         }
     }
+
     public void controlledClick(WebElement element, WebElement control) {
         try {
             BrowserUtils.waitForClickability(element, 3);
@@ -488,16 +559,46 @@ public class FunctionPage extends Base {
         }
         BrowserUtils.waitForVisibility(control, 4);
     }
+
     public void writeSearchText(String searchText) {
         txtSearchbox.click();
         txtSearchbox.sendKeys(searchText);
     }
+
     public void clickFunctionBtn() {
         BrowserUtils.waitFor(2);
         if (btnFunction.isEnabled()) {
             btnFunction.click();
             BrowserUtils.waitForVisibility(mainMenuBar, 10);
         }
-    }
-}
 
+    }
+
+    public WebElement getComboBoxOrganizationEinheit(String Einheit) {
+        BrowserUtils.waitFor(5);
+        comboBoxOrganizationEinheit.click();
+        comboBoxOrganizationEinheit.sendKeys(Einheit);
+        clickOrganization.click();
+        return comboBoxOrganizationEinheit;
+    }
+
+    @FindBy(css = "div.ms-ComboBox-container:nth-child(1) input")
+    private WebElement comboBoxOrganizationEinheit;
+
+    public WebElement getSelectOrganization(String Role) {
+        BrowserUtils.waitFor(5);
+        selectOrganization.click();
+        selectOrganization.sendKeys(Role);
+        clickOrganization.click();
+        return selectOrganization;
+    }
+
+    @FindBy(css = "div.ms-ComboBox-container:nth-child(2) input")
+    private WebElement selectOrganization;
+    @FindBy(css = ".ms-ComboBox-optionText")
+    private WebElement clickOrganization;
+    @FindBy(css = ".ms-List-cell")
+    private List<WebElement> allOrganization;
+
+
+}

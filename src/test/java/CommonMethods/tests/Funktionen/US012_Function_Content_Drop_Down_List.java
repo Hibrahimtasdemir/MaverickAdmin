@@ -15,7 +15,19 @@ public class US012_Function_Content_Drop_Down_List extends POManager {
         getFunctionPage().clickFunctionBtn();
         getFunctionPage().setFunctionCheckBoxForDropdown();
         getFunctionPage().setFunctionDropdown();
-        Assert.assertTrue(getFunctionPage().getBearbeitenUndLöschenDisplay().isDisplayed());
+        Assert.assertTrue(getFunctionPage().getBearbeitenUndLoschenDisplay().isDisplayed());
         getFunctionPage().getBtnEdit();
+        Assert.assertTrue(getFunctionPage().getFunctionEditPanel().isDisplayed());
+        getFunctionPage().clickNeuZuweisung();
+        getFunctionPage().selectBenutzer("123@123.de");
+        getFunctionPage().setGultigkeitArea();
+        getFunctionPage().setAktuelleWoche();
+        Assert.assertTrue(getFunctionPage().getButtonUbernehmen().isEnabled());
+        Assert.assertTrue(getFunctionPage().getDatePickerControl().isDisplayed());
+        getFunctionPage().clickUbernehmenButton();
+       // getFunctionPage().setClickAbbrechen();
+        getFunctionPage().btnsecondLoschen();
+        getFunctionPage().clickSpeichernButton();
+
     }
 }
