@@ -12,7 +12,9 @@ public class US005_Function_Menu_Filter extends POManager {
         getFunctionPage().writeSearchText("Funktionen");
         getFunctionPage().clickFunctionBtn();
         getFunctionPage().setFilterIcon();
-        getFunctionPage().setStichwortFilternField("Unter");
+        getFunctionPage().StichwortFilternField("1");
+        getFunctionPage().StichwortFilternField("0");
+        getFunctionPage().StichwortFilternField("0");
         Assert.assertTrue(getFunctionPage().filteredList().isDisplayed());
 
     }
