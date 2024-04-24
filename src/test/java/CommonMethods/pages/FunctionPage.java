@@ -466,7 +466,7 @@ public class FunctionPage extends Base {
         BrowserUtils.waitFor(3);
         return btnLoschen;
     }
-    public void buttonLöschenMainBar() {
+    public void clickButtonLöschenMainBar() {
         BrowserUtils.waitFor(2);
         btnLoschen.click();
     }
@@ -597,8 +597,95 @@ public class FunctionPage extends Base {
     private WebElement selectOrganization;
     @FindBy(css = ".ms-ComboBox-optionText")
     private WebElement clickOrganization;
+
+    public WebElement getFunctionPageContainer() {
+
+        return functionPageContainer;
+    }
+
+    @FindBy(css = "#detailsContainer")
+    private WebElement functionPageContainer;
+
     @FindBy(css = ".ms-List-cell")
-    private List<WebElement> allOrganization;
+    private List<WebElement> allFunctions;
+    public List<WebElement> allFunctionsVisible(){
+        BrowserUtils.waitFor(2);
+        if (allFunctions.size()>1) {
+            System.out.println(allFunctions.size());
+        }else {
+            System.out.println("No functions found");
+        }
+        return allFunctions;
+    }
+
+    public WebElement getFunctionHeaderWrapper() {
+        BrowserUtils.waitFor(2);
+
+        System.out.println(functionHeaderWrapper.getText());
+        return functionHeaderWrapper;
+    }
+
+    @FindBy(css = ".ms-DetailsList-headerWrapper")
+    private WebElement functionHeaderWrapper;
+
+    @FindBy(css = "ms-DetailsRow-cell")
+    private List<WebElement> allRows;
+
+    public void allRowsInLine(String[] rows){
+        BrowserUtils.waitFor(5);
+        for (String row : rows)
+        for (WebElement option : allRows){
+            if (option.getText().equals(row)){
+                option.click();
+            }
+        }
+
+    }
+    @FindBy(xpath = "(//div[@role='radio'])[1]")
+    private WebElement functionCheckBoxForCreate;
+
+    public void functionCheckBoxForCreate(){
+        BrowserUtils.waitFor(5);
+        functionCheckBoxForCreate.click();
+    }
+
+    public WebElement getHinzugefügtAm() {
+        BrowserUtils.waitFor(5);
+        System.out.println(hinzugefügtAm.getText());
+        return hinzugefügtAm;
+    }
+
+    @FindBy(xpath = "//span[contains(text(),'Hinzugefügt am')]")
+    private WebElement hinzugefugtAmSortieren;
+
+    public void clickHinzugefugtAmSortieren(){
+        BrowserUtils.waitFor(3);
+        hinzugefugtAmSortieren.click();
+    }
+
+    public WebElement getAscendingAndDescendingPanel() {
+        BrowserUtils.waitFor(2);
+        return AscendingAndDescendingPanel;
+    }
+
+    @FindBy(css = ".ms-ContextualMenu-list.is-open")
+    private WebElement AscendingAndDescendingPanel;
+    @FindBy(xpath = "(//div[@role='gridcell'])[4]")
+    private WebElement hinzugefügtAm;
+
+
+    @FindBy(css = "li.ms-ContextualMenu-item:nth-child(1)")
+    private WebElement aufsteigenSortieren;
+    public void clickAbsteigenSortieren(){
+        BrowserUtils.waitFor(2);
+        absteigenSortieren.click();
+    }
+    @FindBy(css = "li.ms-ContextualMenu-item:nth-child(2)")
+    private WebElement absteigenSortieren;
+    public void clickAufsteigenSortieren(){
+        BrowserUtils.waitFor(2);
+        aufsteigenSortieren.click();
+    }
 
 
 }

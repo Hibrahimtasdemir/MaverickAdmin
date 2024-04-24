@@ -22,7 +22,7 @@ public class US003_Function_Delete extends POManager {
 
         Assert.assertTrue(getFunctionPage().getBtnLoschen().isEnabled());
 
-        getFunctionPage().buttonLöschenMainBar();
+        getFunctionPage().clickButtonLöschenMainBar();
 
         getFunctionPage().confirmLöschenButton();
 

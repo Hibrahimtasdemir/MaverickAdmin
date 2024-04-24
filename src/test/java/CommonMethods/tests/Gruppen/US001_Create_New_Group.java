@@ -2,36 +2,37 @@ package CommonMethods.tests.Gruppen;
 
 import CommonMethods.pagefactory.POManager;
 import CommonMethods.utils.Config;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class US001_Create_New_Group extends POManager {
 
-    @Test(description = "23055 Groups_Create New Group")
-    public void TC001_Group_Create_New_Group(){
+    @Test
+    @Description("23055 Groups_Create New Group")
+    @Severity(SeverityLevel.CRITICAL)
+    public void TC001_Groups_Create_New_Group(){
 
-
-        getGruppenPage()
-                .openBrowser(Config.getProperty("url"));
-        getGruppenPage()
-                .writeSearchText("Gruppen");
-        getGruppenPage()
-                .clickGruppenBtn();
+        getGruppenPage().openBrowser(Config.getProperty("url"));
+        getGruppenPage().writeSearchText("Gruppen");
+        getGruppenPage().clickGruppenBtn();
         Assert.assertTrue(getGruppenPage().getBtnHinzufügen().isDisplayed());
         System.out.println("Button Hinzufügen was displayed");
-        getGruppenPage()
-                .clickHinzufügenBtn();
-       Assert.assertTrue(getGruppenPage().getCreateGroupScreen().isDisplayed());
-       Assert.assertFalse(getGruppenPage().getCreateGroupScreen().getAttribute("class").contains("is-disabled"));
-       getGruppenPage()
-               .enterGroupName("GroupTest");
-       getGruppenPage()
-               .gruppenMitgliederField("A365T_REGZ");
+        getGruppenPage().clickHinzufügenBtn();
+        Assert.assertTrue(getGruppenPage().getGroupCreateScreen().isDisplayed());
+        Assert.assertTrue(getGruppenPage().getCreateButtonDisabled().getAttribute("class").contains("is-disabled"));
+        String groupName = "GroupTest" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        getGruppenPage().enterGroupName(groupName);
+        getGruppenPage().gruppenMitgliederField("A365T_REGZ");
         Assert.assertTrue(getGruppenPage().getSelectedMitglieder().isDisplayed());
-        getGruppenPage()
-                .selectedMitglieder();
-        getGruppenPage()
-                .clickErstellenBtn();
+        getGruppenPage().selectedMitglieder();
+        getGruppenPage().clickCreateButton();
+
 
 
 

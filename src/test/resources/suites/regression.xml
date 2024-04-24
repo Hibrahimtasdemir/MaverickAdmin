@@ -12,6 +12,19 @@
     <test name="FunctionPage">
         <classes>
             <class name="CommonMethods.tests.Funktionen.US001_Show_Functions" />
+            <class name="CommonMethods.tests.Funktionen.US002_Menu_Create_New_Function" />
+            <class name="CommonMethods.tests.Funktionen.US003_Function_Delete" />
+            <class name="CommonMethods.tests.Funktionen.US004_Menu_Edit_Function_Add_User" />
+            <class name="CommonMethods.tests.Funktionen.US005_Function_Menu_Filter" />
+            <class name="CommonMethods.tests.Funktionen.US006_Function_Breadcrumb" />
+            <class name="CommonMethods.tests.Funktionen.US007_Menu_Edit_Function_Remove" />
+            <class name="CommonMethods.tests.Funktionen.US008_Function_Menu_Download" />
+            <class name="CommonMethods.tests.Funktionen.US009_Function_Menu_Fullscreen" />
+            <class name="CommonMethods.tests.Funktionen.US010_Function_Content_Organinizational_Filter" />
+            <class name="CommonMethods.tests.Funktionen.US011_Function_Content_Role_Filter" />
+            <class name="CommonMethods.tests.Funktionen.US012_Function_Content_Drop_Down_List" />
+            <class name="CommonMethods.tests.Funktionen.US013_Function_Content_View" />
+            <class name="CommonMethods.tests.Funktionen.US014_Function_Content_Add_On" />
         </classes>
     </test>
 

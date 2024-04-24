@@ -9,13 +9,6 @@
     </listeners>
 
 
-    <test name="FunctionPage">
-        <classes>
-            <class name="CommonMethods.tests.Funktionen.US002_Menu_Create_New_Function"></class>
-            <class name="CommonMethods.tests.Funktionen.US002_Menu_Create_New_Function"></class>
-        </classes>
-    </test>
-
     <test name="BenutzerPage">
         <classes>
             <class name="CommonMethods.tests.Funktionen.US002_Menu_Create_New_Function"></class>

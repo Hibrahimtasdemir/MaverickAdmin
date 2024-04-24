@@ -21,6 +21,16 @@ public class US002_Menu_Create_New_Function extends POManager {
         getFunctionPage().getSelectOrganization("Mitarbeit");
         //Assert.assertTrue(getFunctionPage().getBtnCreateFunction().getAttribute("class").contains("is-disabled"));
         getFunctionPage().getBtnCreateFunction();
+        String[] rows = {"500"};
+        getFunctionPage().allRowsInLine(rows);
+        Assert.assertTrue(getFunctionPage().getHinzugefügtAm().isDisplayed());
+        getFunctionPage().clickHinzugefugtAmSortieren();
+        Assert.assertTrue(getFunctionPage().getAscendingAndDescendingPanel().isDisplayed());
+        getFunctionPage().functionCheckBoxForCreate();
+        getFunctionPage().clickButtonLöschenMainBar();
+        getFunctionPage().confirmLöschenButton();
+
+
 
 
 

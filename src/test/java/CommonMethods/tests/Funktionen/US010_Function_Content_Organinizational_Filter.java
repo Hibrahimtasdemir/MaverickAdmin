@@ -10,7 +10,7 @@ public class US010_Function_Content_Organinizational_Filter extends POManager {
     @Test(description = "23299 Function_Content Organizational_Filter" )
         public void TC_001_Function_Content_Organizational_Filter(){
 
-        getFunctionPage().openBrowser(Config.getProperty("url"));;
+        getFunctionPage().openBrowser(Config.getProperty("url"));
         getFunctionPage().writeSearchText("Funktionen");
         getFunctionPage().clickFunctionBtn();
         getFunctionPage().setFilterIcon();
