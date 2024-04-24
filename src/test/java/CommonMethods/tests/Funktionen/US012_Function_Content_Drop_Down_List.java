@@ -25,7 +25,6 @@ public class US012_Function_Content_Drop_Down_List extends POManager {
         Assert.assertTrue(getFunctionPage().getButtonUbernehmen().isEnabled());
         Assert.assertTrue(getFunctionPage().getDatePickerControl().isDisplayed());
         getFunctionPage().clickUbernehmenButton();
-       // getFunctionPage().setClickAbbrechen();
         getFunctionPage().btnsecondLoschen();
         getFunctionPage().clickSpeichernButton();
 
