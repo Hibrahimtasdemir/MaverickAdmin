@@ -637,6 +637,7 @@ public class FunctionPage extends Base {
         for (WebElement option : allRows){
             if (option.getText().equals(row)){
                 option.click();
+                break;
             }
         }
 
