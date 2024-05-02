@@ -47,6 +47,15 @@ public class BrowserUtils {
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
         // this method uses below method
     }
+    public static void sendKeys(CharSequence... keysToSend) {
+        Actions actions = new Actions(Driver.getDriver());
+        actions.sendKeys(keysToSend).perform();
+    }
+
+    public static void sendKeys(WebElement element, CharSequence... keysToSend) {
+        Actions actions = new Actions(Driver.getDriver());
+        actions.moveToElement(element).sendKeys(keysToSend).perform();
+    }
 
     private static By getLocatorFromWebElement(WebElement element) {
         //[[ChromeDriver: chrome on WINDOWS (421ef25173cc20ec4a7cd08cd2bef8b3)] -> xpath: //*[contains(text(), 'Video Conferencing - Telehealth')]]

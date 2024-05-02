@@ -114,7 +114,7 @@ public class FunctionPage extends Base {
     private WebElement functionNeueZuweisung;
     @FindBy(xpath = ".//button[@role='option']")
     private List<WebElement> listOfTimeAssignments;
-    @FindBy(xpath = "//button[@role='menuitemcheckbox']")
+    @FindBy(xpath = "//button[@role='menuitemc.ms-Modal-scrollableContentheckbox']")
     private List<WebElement> listOfOrganizationStruktur;
     @FindBy(xpath = "(//button[contains(@class,'ms-ContextualMenu-link')])[4]")
     private WebElement clickBreadcrumb;

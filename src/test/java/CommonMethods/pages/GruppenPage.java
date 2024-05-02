@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.Browser;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -82,11 +83,161 @@ public class GruppenPage extends Base {
     private WebElement filterIcon;
     @FindBy(css = "input.ms-TextField-field")
     private WebElement stichwortFilternArea;
+    @FindBy(xpath = "//button[@title='Bearbeiten']")
+    private WebElement buttonEdit;
+    @FindBy(css = ".ms-Panel-navigation")
+    private WebElement groupPanelNavigation;
+    @FindBy(xpath = "(//span[contains(@class,'ms-Pivot-text')])[2]")
+    private WebElement groupPanelBenutzer;
+    @FindBy(xpath = "//span[contains(text(),'Neue Zuweisung')]")
+    private WebElement groupBenutzerNeuZuweisung;
+    @FindBy(xpath = "//input[@aria-haspopup='listbox']")
+    private WebElement addUserInput;
+    @FindBy(css = ".ms-Modal-scrollableContent")
+    private WebElement benutzerHinzufügenDisplay;
+    @FindBy(xpath = "//div[contains(text(),'123@123.de')]")
+    private WebElement userNameVerify;
+    @FindBy(css = ".ms-Suggestions-itemButton")
+    private WebElement clickOnUser;
+    @FindBy(css = ".ms-Dropdown")
+    private WebElement gultigkeitArea;
+    @FindBy(xpath = "//button[@role='option']")
+    private List<WebElement> listOfTimeAssignments;
+    @FindBy(xpath = "//span[contains(text(),'Unbeschränkt gültig')]")
+    private WebElement unbeschranktGultig;
+    @FindBy(xpath = "//span[contains(text(),'Benutzerdefiniert')]")
+    private WebElement benutzerDefiniert;
+    @FindBy(xpath = "//span[contains(text(),'Aktuelle Woche')]")
+    private WebElement aktuelleWoche;
+    @FindBy(xpath = "//span[contains(text(),'Aktueller Monat')]")
+    private WebElement aktuellerMonat;
+    @FindBy(xpath = "//span[contains(text(),'Nächste Woche')]")
+    private WebElement nächsteWoche;
+    @FindBy(xpath = "//span[contains(text(),'Nächster Monat')]")
+    private WebElement nächsterMonat;
+    @FindBy(xpath = "(//div[starts-with(@class,'ms-Stack root')])[4]")
+    private WebElement datePickerControl;
+    @FindBy(xpath = "(//input[@type='text'])[3]")
+    private WebElement chooseEndDatum;
+    @FindBy(css = "span.ms-Dialog-action:nth-child(1)")
+    private WebElement clickUbernehmen;
+    @FindBy(css = "span.ms-Dialog-action:nth-child(1)")
+    private WebElement btnUbernehmen;
+    @FindBy(xpath = "//span[contains(text(),'Speichern')]")
+    private WebElement clickSpeichern;
+    @FindBy(css = ".ms-Modal-scrollableContent")
+    private WebElement groupUserAddPanel;
+    public WebElement getGroupUserAddPanel() {
 
-    public void stichwortFilternField(String groupName) {
-        BrowserUtils.waitFor(5);
-        stichwortFilternArea.sendKeys(groupName);
-       // JavascriptExecutor js = (JavascriptExecutor) driver;
+        return groupUserAddPanel;
+    }
+    public WebElement getUnbeschranktGultig() {
+        BrowserUtils.waitFor(2);
+        unbeschranktGultig.click();
+
+        return unbeschranktGultig;
+    }
+
+    public void setBenutzerDefiniert() {
+        BrowserUtils.waitFor(2);
+
+        benutzerDefiniert.click();
+    }
+
+    public void setAktuelleWoche() {
+        BrowserUtils.waitFor(2);
+        aktuelleWoche.click();
+    }
+
+    public void setAktuellerMonat() {
+        BrowserUtils.waitFor(2);
+        aktuellerMonat.click();
+    }
+
+    public void setNächsteWoche() {
+        BrowserUtils.waitFor(2);
+        nächsteWoche.click();
+    }
+
+    public void setNächsterMonat() {
+        BrowserUtils.waitFor(2);
+        nächsterMonat.click();
+    }
+    public WebElement getDatePickerControl() {
+        return datePickerControl;
+    }
+    public void clickUbernehmenButton() {
+        BrowserUtils.waitFor(2);
+        clickUbernehmen.click();
+    }
+    public void clickSpeichernButton() {
+        BrowserUtils.waitFor(4);
+        clickSpeichern.click();
+    }
+
+    public WebElement getButtonUbernehmen() {
+        BrowserUtils.waitFor(2);
+        // btnUbernehmen.click();
+        return btnUbernehmen;
+    }
+    public void getChooseEndDatum(String endDatumAuswahlen) {
+        chooseEndDatum.sendKeys(endDatumAuswahlen);
+        BrowserUtils.waitFor(2);
+        Assert.assertTrue(getButtonUbernehmen().isEnabled());
+    }
+    public boolean getListOfTimeAssignments(String[] expectedValues) {
+        BrowserUtils.waitFor(2);
+
+        for (String expectedValue : expectedValues) {
+            boolean found = false;
+            for (WebElement option : listOfTimeAssignments) {
+                if (option.getText().equals(expectedValue)) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public void setGultigkeitArea() {
+        BrowserUtils.waitFor(2);
+        BrowserUtils.clickWithJS(gultigkeitArea);
+    }
+
+    public void selectBenutzer(String AddUser) {
+        addUserInput.sendKeys(AddUser);
+        BrowserUtils.waitForVisibility(userNameVerify, 4);
+        clickOnUser.click();
+    }
+    public WebElement getBenutzerHinzufügenDisplay() {
+        return benutzerHinzufügenDisplay;
+    }
+
+    public void clickGroupBenutzerNeuZuweisung(){
+        BrowserUtils.waitFor(2);
+        groupBenutzerNeuZuweisung.click();
+    }
+    public void clickGroupPanelBenutzer(){
+        BrowserUtils.waitFor(2);
+        groupPanelBenutzer.click();
+    }
+    public WebElement getGroupPanelNavigation() {
+        BrowserUtils.waitFor(2);
+        return groupPanelNavigation;
+    }
+    public WebElement getEditButton(){
+        BrowserUtils.waitFor(2);
+        buttonEdit.click();
+        return buttonEdit;
+    }
+    public void stichwortFilternField(String stichwort) {
+        BrowserUtils.waitFor(2);
+        stichwortFilternArea.sendKeys(stichwort);
+        //stichwortFilternArea.sendKeys(groupName);
+       //JavascriptExecutor js = (JavascriptExecutor) driver;
         //js.executeScript("arguments[0].value='GroupTest';", stichwortFilternArea);
 
     }
