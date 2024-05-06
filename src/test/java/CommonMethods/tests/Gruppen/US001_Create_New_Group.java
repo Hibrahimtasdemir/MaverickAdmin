@@ -26,8 +26,7 @@ public class US001_Create_New_Group extends POManager {
         getGruppenPage().clickHinzufügenBtn();
         Assert.assertTrue(getGruppenPage().getGroupCreateScreen().isDisplayed());
         Assert.assertTrue(getGruppenPage().getCreateButtonDisabled().getAttribute("class").contains("is-disabled"));
-       // String groupName = "GroupTest" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-        String groupName = "GroupTest11" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        String groupName = "GroupTest" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
         getGruppenPage().enterGroupName(groupName);
         getGruppenPage().gruppenMitgliederField("A365T_REGZ");
         Assert.assertTrue(getGruppenPage().getSelectedMitglieder().isDisplayed());
