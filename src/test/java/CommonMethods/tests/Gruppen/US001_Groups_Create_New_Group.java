@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class US001_Create_New_Group extends POManager {
+public class US001_Groups_Create_New_Group extends POManager {
 
     @Test
     @Description("23055 Groups_Create New Group")

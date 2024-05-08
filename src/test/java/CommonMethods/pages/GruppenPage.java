@@ -77,6 +77,8 @@ public class GruppenPage extends Base {
     private WebElement buttonLöschenEnabled;
     @FindBy(css = "span.ms-Dialog-action:nth-child(1)")
     private WebElement clickLöschen;
+    @FindBy(xpath = "(//button[@title='Löschen'])[2]")
+    private WebElement btnLoschenAssignment;
     @FindBy(css = ".Toastify")
     private WebElement notificationPanel;
     @FindBy(xpath = "//i[@data-icon-name='Filter']")
@@ -89,8 +91,10 @@ public class GruppenPage extends Base {
     private WebElement groupPanelNavigation;
     @FindBy(xpath = "(//span[contains(@class,'ms-Pivot-text')])[2]")
     private WebElement groupPanelBenutzer;
+    @FindBy(xpath = "(//span[contains(@class,'ms-Pivot-text')])[1]")
+    private WebElement groupPanelGruppen;
     @FindBy(xpath = "//span[contains(text(),'Neue Zuweisung')]")
-    private WebElement groupBenutzerNeuZuweisung;
+    private WebElement groupNeuZuweisung;
     @FindBy(xpath = "//input[@aria-haspopup='listbox']")
     private WebElement addUserInput;
     @FindBy(css = ".ms-Modal-scrollableContent")
@@ -127,6 +131,27 @@ public class GruppenPage extends Base {
     private WebElement clickSpeichern;
     @FindBy(css = ".ms-Modal-scrollableContent")
     private WebElement groupUserAddPanel;
+
+    //Click everytime the first assignment in Gruppen-Benutzer to delete it
+    public void buttonLöschenAssignment(){
+        BrowserUtils.waitFor(2);
+        Actions action = new Actions(driver);
+        action.click(btnLoschenAssignment).build().perform();
+    }
+    public WebElement getAssignmentList() {
+        BrowserUtils.waitFor(2);
+        if (assignmentList.isDisplayed()){
+            System.out.println(assignmentList.getText());
+        }else {
+            System.out.println("No any assignments in this group");
+        }
+
+        return assignmentList;
+    }
+
+    @FindBy(xpath = "(//div[@class='ms-List-page'])[2]"    )
+    private WebElement assignmentList;
+
     public WebElement getGroupUserAddPanel() {
 
         return groupUserAddPanel;
@@ -216,13 +241,17 @@ public class GruppenPage extends Base {
         return benutzerHinzufügenDisplay;
     }
 
-    public void clickGroupBenutzerNeuZuweisung(){
+    public void clickGroupNeuZuweisung(){
         BrowserUtils.waitFor(2);
-        groupBenutzerNeuZuweisung.click();
+        groupNeuZuweisung.click();
     }
     public void clickGroupPanelBenutzer(){
         BrowserUtils.waitFor(2);
         groupPanelBenutzer.click();
+    }
+    public void clickGroupPanelGruppen(){
+        BrowserUtils.waitFor(2);
+        groupPanelGruppen.click();
     }
     public WebElement getGroupPanelNavigation() {
         BrowserUtils.waitFor(2);

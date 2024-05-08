@@ -8,7 +8,7 @@ import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class US003_Group_Edit_Group_Add_Users extends POManager {
+public class US003_Groups_Edit_Group_Add_Users extends POManager {
     @Test
     @Description("23056 Groups_Edit_Group_Add_Users")
     @Severity(SeverityLevel.CRITICAL)
@@ -27,7 +27,7 @@ public class US003_Group_Edit_Group_Add_Users extends POManager {
         getGruppenPage().getEditButton();
         Assert.assertTrue(getGruppenPage().getGroupPanelNavigation().isDisplayed());
         getGruppenPage().clickGroupPanelBenutzer();
-        getGruppenPage().clickGroupBenutzerNeuZuweisung();
+        getGruppenPage().clickGroupNeuZuweisung();
         Assert.assertTrue(getGruppenPage().getBenutzerHinzufügenDisplay().isDisplayed());
         getGruppenPage().selectBenutzer("123@123.de");
         getGruppenPage().setGultigkeitArea();
