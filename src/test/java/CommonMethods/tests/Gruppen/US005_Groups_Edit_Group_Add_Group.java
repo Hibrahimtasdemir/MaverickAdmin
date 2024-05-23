@@ -27,5 +27,8 @@ public class US005_Groups_Edit_Group_Add_Group extends POManager {
         getGruppenPage().getEditButton();
         getGruppenPage().clickGroupPanelGruppen();
         getGruppenPage().clickGroupNeuZuweisung();
+        getGruppenPage().getGroupUserAddPanel();
+        getGruppenPage().selectGroup("120 Lesen");
+
     }
 }
