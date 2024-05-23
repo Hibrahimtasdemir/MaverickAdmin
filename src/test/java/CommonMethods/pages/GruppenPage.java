@@ -3,6 +3,7 @@ package CommonMethods.pages;
 import CommonMethods.pagefactory.Base;
 import CommonMethods.utils.BrowserUtils;
 import CommonMethods.utils.Driver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -10,6 +11,11 @@ import org.openqa.selenium.remote.Browser;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static CommonMethods.pagefactory.Annotations.driver;
@@ -93,6 +99,8 @@ public class GruppenPage extends Base {
     private WebElement groupPanelBenutzer;
     @FindBy(xpath = "(//span[contains(@class,'ms-Pivot-text')])[1]")
     private WebElement groupPanelGruppen;
+    @FindBy(xpath = " (//span[contains(@class,'ms-Pivot-text')])[3]")
+    private WebElement groupModuleTab;
     @FindBy(xpath = "//span[contains(text(),'Neue Zuweisung')]")
     private WebElement groupNeuZuweisung;
     @FindBy(xpath = "//input[@aria-haspopup='listbox']")
@@ -131,6 +139,104 @@ public class GruppenPage extends Base {
     private WebElement clickSpeichern;
     @FindBy(css = ".ms-Modal-scrollableContent")
     private WebElement groupUserAddPanel;
+    @FindBy(css = "div.ms-BasePicker-text input.ms-BasePicker-input")
+    private WebElement addGroupInput;
+    @FindBy(xpath = "//div[contains(text(),'120 Lesen')]")
+    private WebElement groupNameVerify;
+    @FindBy(css = ".ms-Suggestions-itemButton")
+    private WebElement clickOnGroup;
+    @FindBy(xpath = "//div[contains(@class, \"ms-Stack headerSubText\")]/span[contains(@class, \"css-\")]")
+    private WebElement lastUpdate;
+    @FindBy(css ="span.ms-MessageBar-innerText > span")
+    private WebElement exportFileNotificationMessage;
+    @FindBy(xpath = "//button[@title='Herunterladen']")
+    private WebElement buttonGroupDownload;
+    @FindBy(xpath = "(//div[contains (@class,'ms-ScrollablePane--contentContainer')])[2]")
+    private WebElement moduleConfigurationArea;
+    @FindBy(css = "button.ms-Toggle-background[role='switch'][data-testid='defaultModulesToggle']")
+    private WebElement buttonVerebteModul;
+    @FindBy(xpath = "//span[contains(text(), 'GroupT')]")
+    private List <WebElement> filteredNameList;
+    @FindBy(xpath = "//button[@title='Hochladen']")
+    private WebElement buttonGroupUpload;
+    @FindBy(xpath = "//i[@data-icon-name='info']")
+    private WebElement infoButton;
+    @FindBy(css = ".ms-Modal-scrollableContent")
+    private WebElement groupInfoPanel;
+
+    public WebElement getGroupInfoPanel() {
+        BrowserUtils.waitFor(2);
+        System.out.println(groupInfoPanel.getText());
+        return groupInfoPanel;
+    }
+    public void clickInfoButton(){
+        BrowserUtils.waitFor(2);
+        infoButton.click();
+    }
+    public void clickGroupUpload(){
+        BrowserUtils.waitFor(2);
+        buttonGroupUpload.click();
+    }
+    public void uploadFile(String filePath){
+        BrowserUtils.waitFor(2);
+        buttonGroupUpload.sendKeys(filePath);
+    }
+    public List<WebElement> getFilteredNameList() {
+        BrowserUtils.waitFor(2);
+        System.out.println(filteredNameList.size());
+        return filteredNameList;
+    }
+    public List<WebElement> searchPartialName(String partialName){
+
+        List<WebElement> matchingElements = new ArrayList<>();
+        for (WebElement element : filteredNameList){
+            if (element.getText().contains(partialName)){
+                matchingElements.add(element);
+            }
+        }
+        return matchingElements;
+    }
+    public void clickVerebteModuleEinstellung(){
+        BrowserUtils.waitFor(2);
+        buttonVerebteModul.click();
+    }
+    public WebElement getModuleConfigurationArea() {
+        return moduleConfigurationArea;
+    }
+    public void buttonGroupDownload(){
+        BrowserUtils.waitFor(2);
+        buttonGroupDownload.click();
+    }
+    public void downloadNotificationMessage(){
+        BrowserUtils.waitFor(5);
+        System.out.println(exportFileNotificationMessage.getText());
+        if (exportFileNotificationMessage.getText().equals("Der Export war erfolgreich")){
+            System.out.println("Test passed");
+        }else{
+            System.out.println("Download failed");
+        }
+    }
+    public WebElement theLastViewAfterUpdate(){
+        BrowserUtils.waitFor(3);
+        String lastUpdatedText = lastUpdate.getText();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+        LocalDateTime currentTime = LocalDateTime.now();
+        String currentDateTime = currentTime.format(formatter);
+
+        if (lastUpdatedText.equals(currentDateTime)){
+            System.out.println("Last update matches the current date and time");
+        }else {
+            System.out.println("it does not match");
+        }
+        return lastUpdate;
+    }
+    public void selectGroup(String AddGroup){
+        addGroupInput.sendKeys(AddGroup);
+        BrowserUtils.waitForVisibility(groupNameVerify, 3);
+        System.out.println(groupNameVerify.getText());
+        clickOnGroup.click();
+    }
 
     //Click everytime the first assignment in Gruppen-Benutzer to delete it
     public void buttonLöschenAssignment(){
@@ -153,7 +259,7 @@ public class GruppenPage extends Base {
     private WebElement assignmentList;
 
     public WebElement getGroupUserAddPanel() {
-
+        BrowserUtils.waitFor(2);
         return groupUserAddPanel;
     }
     public WebElement getUnbeschranktGultig() {
@@ -253,6 +359,10 @@ public class GruppenPage extends Base {
         BrowserUtils.waitFor(2);
         groupPanelGruppen.click();
     }
+    public void clickGroupPanelModule(){
+        BrowserUtils.waitFor(2);
+        groupModuleTab.click();
+    }
     public WebElement getGroupPanelNavigation() {
         BrowserUtils.waitFor(2);
         return groupPanelNavigation;
@@ -262,39 +372,34 @@ public class GruppenPage extends Base {
         buttonEdit.click();
         return buttonEdit;
     }
+
     public void stichwortFilternField(String stichwort) {
         BrowserUtils.waitFor(2);
         stichwortFilternArea.sendKeys(stichwort);
-        //stichwortFilternArea.sendKeys(groupName);
-       //JavascriptExecutor js = (JavascriptExecutor) driver;
-        //js.executeScript("arguments[0].value='GroupTest';", stichwortFilternArea);
-
     }
-
+    public void keywordFilter(char keyword){
+        BrowserUtils.waitFor(2);
+        stichwortFilternArea.sendKeys(String.valueOf(keyword));
+    }
     public void clickFilterIcon() {
         BrowserUtils.waitFor(5);
         filterIcon.click();
     }
-
     public WebElement getNotificationPanel() {
         BrowserUtils.waitFor(4);
         System.out.println(notificationPanel.getText());
         return notificationPanel;
     }
-
     public void clickLöschenButton() {
         BrowserUtils.waitFor(2);
         clickLöschen.click();
     }
-
     public WebElement getButtonAbbrechenEnabled() {
         return buttonAbbrechenEnabled;
     }
-
     public WebElement getButtonLöschenEnabled() {
         return buttonLöschenEnabled;
     }
-
     /*
     This clicks the "Löschen" button on the main bar of "Gruppen"
      */
@@ -302,7 +407,6 @@ public class GruppenPage extends Base {
         BrowserUtils.waitFor(3);
         btnLoschen.click();
     }
-
     /*
     This method is used to verify that the delete button is enabled or disabled
      */
@@ -310,7 +414,6 @@ public class GruppenPage extends Base {
         BrowserUtils.waitFor(3);
         return btnLoschen;
     }
-
     /*
     This method is used to click the first checkbox in group content.
      */
@@ -318,7 +421,6 @@ public class GruppenPage extends Base {
         BrowserUtils.waitFor(6);
         firstCheckboxForDelete.click();
     }
-
     /*
     This method is used verify whether the "Erstelle" button is disabled
      */
@@ -326,7 +428,6 @@ public class GruppenPage extends Base {
         BrowserUtils.waitFor(2);
         return createButtonDisabled;
     }
-
     /*
     It returns whether the dialog window for creating group is displayed or not
      */
@@ -334,7 +435,6 @@ public class GruppenPage extends Base {
         BrowserUtils.waitFor(2);
         return groupCreateScreen;
     }
-
     /*
     This method enables us to verify whether the selected user is displayed in the field of group creating
      */
@@ -342,7 +442,6 @@ public class GruppenPage extends Base {
         BrowserUtils.waitFor(2);
         return selectedMitglieder;
     }
-
     /*
     This method clicks on the selected user from the list in the group creating
      */
@@ -350,7 +449,6 @@ public class GruppenPage extends Base {
         BrowserUtils.waitForClickability(selectedMitglieder, 2);
         selectedMitglieder.click();
     }
-
     /*
     This method enables us to send a value to field which we want to return
      */
@@ -358,9 +456,7 @@ public class GruppenPage extends Base {
         BrowserUtils.waitFor(3);
         gruppenMitglieder.click();
         gruppenMitglieder.sendKeys(gruppenMitgliederName);
-
     }
-
     /*
     It clicks on "Neu" in Gruppen
      */
@@ -405,7 +501,7 @@ public class GruppenPage extends Base {
         BrowserUtils.waitFor(2);
         if (btnGruppen.isEnabled()) {
             btnGruppen.click();
-            BrowserUtils.waitForVisibility(mainMenuBar, 10);
+            BrowserUtils.waitForVisibility(mainMenuBar, 5);
         }
     }
 
