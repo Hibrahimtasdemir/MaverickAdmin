@@ -2,20 +2,14 @@ package CommonMethods.pages;
 
 import CommonMethods.pagefactory.Base;
 import CommonMethods.utils.BrowserUtils;
-import CommonMethods.utils.Driver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.Browser;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static CommonMethods.pagefactory.Annotations.driver;
@@ -163,7 +157,38 @@ public class GruppenPage extends Base {
     private WebElement infoButton;
     @FindBy(css = ".ms-Modal-scrollableContent")
     private WebElement groupInfoPanel;
+    @FindBy(xpath = "//div[@data-focuszone-id='FocusZone2']")
+    private WebElement blueRibbon;
+    @FindBy(css = "#contentContainer")
+    private WebElement sideBar;
+    @FindBy(xpath = "//button[@aria-label='Vollbildschirm']")
+    private WebElement btnFullScreen;
+    @FindBy(css = ".navbarContent")
+    private List<WebElement> sideBarControlElement;
 
+    public boolean isSideBarDisplayed() {
+//        BrowserUtils.waitForVisibility(sideBarControlElement,10);
+        BrowserUtils.waitFor(2);
+        if (sideBarControlElement.size() == 0) // bu element yoktur
+        {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public void group_Fullscreen_Button() {
+        BrowserUtils.waitFor(2);
+        btnFullScreen.click();
+    }
+    public WebElement getSideBar() {
+        BrowserUtils.waitForVisibility(sideBar, 3);
+        return sideBar;
+    }
+    public WebElement getBlueRibbon() {
+        BrowserUtils.waitFor( 3);
+        return blueRibbon;
+    }
     public WebElement getGroupInfoPanel() {
         BrowserUtils.waitFor(2);
         System.out.println(groupInfoPanel.getText());
@@ -241,8 +266,8 @@ public class GruppenPage extends Base {
     //Click everytime the first assignment in Gruppen-Benutzer to delete it
     public void buttonLöschenAssignment(){
         BrowserUtils.waitFor(2);
-        Actions action = new Actions(driver);
-        action.click(btnLoschenAssignment).build().perform();
+            Actions action = new Actions(driver);
+            action.click(btnLoschenAssignment).build().perform();
     }
     public WebElement getAssignmentList() {
         BrowserUtils.waitFor(2);
